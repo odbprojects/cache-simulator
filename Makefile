@@ -1,22 +1,27 @@
 # Makefile
 
+# Compiler and flags
 CXX = g++
-CXXFLAGS = -g -Wall -Wextra -pedantic
+CXXFLAGS = -std=c++11 -g -Wall -Wextra -pedantic
 
-# C++ source files that are used in all versions of the executable
+# Source files and object files
 COMMON_CPP_SRCS = main.cpp cache.cpp
 COMMON_CPP_OBJS = $(COMMON_CPP_SRCS:.cpp=.o)
 
+# Executable name
 EXE = csim
 
-%.o : %.cpp
+# Default target
+all: $(EXE)
+
+# Rule for building object files from C++ source files
+%.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-%.o : %.S
-	$(CC) -c $< -o $@
+# Rule for building the executable
+$(EXE): $(COMMON_CPP_OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $(COMMON_CPP_OBJS)
 
-$(EXE) : $(COMMON_CPP_OBJS)
-	$(CXX) -o $@ $(COMMON_CPP_OBJS)
-
-clean :
+# Clean up build artifacts
+clean:
 	rm -f *.o $(EXE)
