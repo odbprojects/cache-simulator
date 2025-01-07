@@ -24,4 +24,4 @@ The cache simulation is implemented in the following way:
         No-Write-Allocate: The write bypasses the cache and directly updates the main memory.
     
     Usage:
-        Usage: ./csim <sets> <blocks_per_set> <bytes_per_block> <write-allocate|no-write-allocate> <write-through|write-back> <lru|fifo> <sometracefile>
+        Usage: ./csim <sets> <blocks_per_set> <bytes_per_block> <write-allocate|no-write-allocate> <write-through|write-back> <lru|fifo> < <sometracefile>
